@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1> 소수 목록들</h1>
+    <div id = "result"></div>
+    <script>
+    
+    
+    var numbers = {};
+    numbers.all = [];
+    numbers.prime = [];
+
+
+    // all[]에 전체 수를 저장
+    numbers.addAllNumber = function(max_num) {
+        for(var i=2; i<=max_num; i++) {
+            this.all.push(i);
+        }                
+    };
+
+
+    // 소수를 판별 후 prime[]에 저장
+    numbers.calcPrime = function() {
+        for(var i=0; i < this.all.length; i++) { // 전체 인덱스 값 확인
+            var n = this.all[i];
+            if (this.isPrime(n)) {  // prime여부 확인
+                this.prime.push(n); // prime일 경우 prime[]에 따로 저장
+            }
+        }
+    };
+
+    // prime인지 판단
+    numbers.isPrime = function(number) {
+        for (var i = 2; i < number; i++) {
+            if(number % i === 0) {
+                return false;
+            }
+        }
+        return true;
+    };
+
+
+    numbers.getAllPrimeNumbers = function() {
+        var ret = "";
+        ret += "<h2>전체 소수의 갯수: " + this.prime.length + "</h2>\n";
+        for (var i = 0; i < this.prime.length; i++) {
+            ret += (i+1) + "번쨰 소수 : " + this.prime[i] + "<br>\n";
+        }
+        return ret;
+        };
+
+
+    numbers.addAllNumber(10000); // 2~10000까지 수를 all[]넣기위해 함수 호출
+    numbers.calcPrime(); // all[]에 들어간 수를 차례대로 검사하기 위해 함수 호출
+    document.getElementById('result').innerHTML= numbers.getAllPrimeNumbers();
+
+    </script>
+
+    
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <h2>1-10000 사이의 소수를 화면에 출력하는 프로그램 작성</h2>
+
+    <html>
+
+
+    <script>
+
+        /*
+        1. 1부터 10000까지 수를 배열에 저장한다
+        2. 배열에서 하나씩 꺼내서 소수 조건을 판별한다
+        3. 조건에 일치하는 수는 따로 저장한다
+        4. 1부터 10000까지 판별이 끝나면 확인 모든 소수를 출력한다
+
+
+        numbers = {};
+        numbers.all = [];
+        numbers.prime = [];
+        numbers.isPrime = function(number);
+        numbers.addPrime = function(number);
+        numbers.getAllPrimes = function();
+        numbers.addAll = function(max_num);
+        */
+
+
+
+        var numbers = {}; 
+        numbers.all = []; 
+        numbers.prime = [];
+
+
+        // 소수를 판단해주는 함수
+        numbers.isPrime = function (number) {
+            var checkPrime = true; // true를 초기값으로 하지만 소수가 아닌 조건을 만날 경우 false로 변경된다
+            var compareNumber = number - 1; // 소수를 확인해주기 위해 2~해당 수까지 모든 수로 나눠봐야 한다
+            for (compareNumber; compareNumber > 1; compareNumber--) {   // 해당수보다 1작은 수 부터 2까지 모두 나눠본다
+
+                if (number % compareNumber === 0) { // 나눠지는 수가 있으면 소수가 아니다
+                    checkPrime = false;
+                }                
+            }
+            // 나눠지는 수가 없을 경우 addPrime[]에 추가한다                  
+            this.addPrime(checkPrime,number);
+        };
+
+
+        // 소수일 경우 배열에 저장해주는 함수
+        numbers.addPrime = function (check,number) {    //isPrime()에서 소수체크값과 해당 수를 전달 받는다
+            if (check === true) {   // 나눠지는 수가 없었을 경우
+                    console.log(number+"는 소수입니다");    // 소수로 판단하고
+                    this.prime.push(number);// prime[]에 순차적으로 추가한다
+                }
+        };
+
+        // prime[]에 저장 된 모든 소수를 출력하는 함수
+        numbers.getAllPrimes = function () {
+            for (i=0; i<this.prime.length; i++ ) {
+                document.write((i+1)+"번 째 소수 : "+this.prime[i]+"<p>")//배열 출력
+
+            }
+            
+        }
+
+        // 2부터 입력받은 수까지 해당하는 모든 수를 all[]에 추가한다
+        numbers.addAll = function (max_num) {
+            for (i = 2; i <= max_num; i++) {
+                this.all.push(i);
+            }
+            numbers.checkAll();
+        };
+
+        // 소수인지 확인하기 위해 all[]에 저장된 모든 인덱스 값을 호출한다
+        numbers.checkAll = function () {
+            for (i = 0; i < this.all.length; i++) {                
+                this.isPrime(this.all[i]);
+            }
+        }
+
+        // 프로그램 동작
+        numbers.addAll(10000);  // 원하는 최대값을 파라미터로 넣고 호출한다
+        numbers.getAllPrimes(); // prime[]에 저장 된 모든 소수를 출력하기 위해 호출한다
+
+
+
+
+
+
+
+
+
+
+    </script>
+
+    </html>
+
+
+
+
+
+
+
+</body>
+
+</html>
