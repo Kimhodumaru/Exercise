@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <h1>객체를 활용한 구구단 구현</h1>
+
+    <script>
+        gugudan = {}; // 객체 생성
+        gugudan.results = [];
+
+        gugudan.calculate = function (num) {
+            var result = []; 
+            for (var i = 1; i <= 9; i++) {
+                result.push(num + " * " + i + " = " + (num * i) + "<br>");
+            }
+            return result;        
+        };
+
+
+        gugudan.printResult = function(a) {
+            for(i=0; i<a.length; i++) {       
+            document.write(a[i]);
+            }document.write("<br>")
+        };
+
+        function main() {
+                       
+            for (var i = 2; i <= 9; i++) {
+                document.write(i+"단 출력"+"<br>");
+                var contents = gugudan.calculate(i);
+                gugudan.printResult(contents);                
+            }
+        };
+
+
+        main();
+
+    </script>
+
+</body>
+
+</html>
