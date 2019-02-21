@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+    <h1>함수를 활용하여 구구단 구현하기</h1>
+
+    
+    <script>
+        function calculrate(num) {
+            var results = [];
+            for (var i = 1; i <= 9; i++) {
+                results.push(num + " * " + i + " = " + num*i + "<br>");            
+            }
+            return results
+        }
+        
+        function print(results) {
+            for(var i = 0; i < results.length; i++) {
+                document.write(results[i]);
+            }
+            
+        }
+
+        function main() {
+            var num = prompt("구구단을 입력하세요");
+            var results = calculrate(num);
+            print(results);
+            
+        }
+
+        main();
+        </script>
+
+    
+</body>
+</html>
