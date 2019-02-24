@@ -1,49 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
-<body>
 
+<body>
+    <h1>문자열 계산기</h1>
+
+    <div>
+        첫번째 수 : <input id="inputNum1" type="text"> <br>
+        두번째 수 : <input id="inputNum2" type="text"> <br>
+        연산자 : <input id="inputOperator" type="text">
+        <button onclick="setNumber()"> 실행 </button>
+    </div>
+
+    <div id="output text1"> calculator1의 결과가 출력됩니다 </div>
+    <div id="output text2"> calculator2의 결과가 출력됩니다 </div>
     <script>
         var setNumber = function () {
+            var input1 = document.getElementById("inputNum1").value;
+            var input2 = document.getElementById("inputNum2").value;
+            var operator = document.getElementById("inputOperator").value;
+            var num1 = Number(input1);
+            var num2 = Number(input2);
+            calculator1(num1, num2, operator);
+            calculator2(num1, num2, operator);
+        };
 
-        var input = prompt("첫번째 값 입력");
-        var num1 = Number(input);
-        var input = prompt("두번째 값 입력");
-        var num2 =  Number(input);
-        var input = prompt("+ , - , * , / 중에서 선택");
-        var operator = input;  
-        calculator(num1,num2,operator);
-        }
+        var calculator1 = function (num1, num2, operator) {
 
-
-        var calculator = function(num1,num2,operator) {
-
-            if(operator === "+") {
-                document.write(num1 + " + " + num2 + " = " + (num1+num2));
+            var out = document.getElementById("output text1");
+            var str = "";
+            if (operator === "+") {
+                str += num1 + " + " + num2 + " = " + (num1 + num2);
             } else if (operator === "-") {
-                document.write(num1 + " - " + num2 + " = " + (num1-num2));
+                str += num1 + " - " + num2 + " = " + (num1 - num2);
             } else if (operator === "*") {
-                document.write(num1 + " * " + num2 + " = " + (num1*num2));                
+                str += num1 + " * " + num2 + " = " + (num1 * num2);
             } else if (operator === "/") {
-                document.write(num1 + " / " + num2 + " = " + (num1/num2));                
+                str += num1 + " / " + num2 + " = " + (num1 / num2);
             }
+
+            out.innerHTML = str;
+
+        };
+
+        var calculator2 = function (num1, num2, operator) {
+
+            var out = document.getElementById("output text2");
+            var str = "";
+
+            switch (operator) {
+                case "+" :
+                str += num1 + " + " + num2 + " = " + (num1 + num2);
+                break;
+                case "-" :
+                str += num1 + " - " + num2 + " = " + (num1 - num2);
+                break;
+                case "*" :
+                str += num1 + " * " + num2 + " = " + (num1 * num2);
+                break;
+                case "/" :
+                str += num1 + " / " + num2 + " = " + (num1 / num2);
+                break;
+
+                default :
+            }
+            
+
+            out.innerHTML = str;
+
         };
 
 
-        var main = function () {
-            setNumber();
-        }
-
-        main();
 
 
 
-        </script>
-    
+
+
+    </script>
+
 </body>
+
 </html>
