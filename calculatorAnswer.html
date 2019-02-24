@@ -10,44 +10,40 @@
 
 <body>
     <h1>문자열 계산기 구현하기</h1>
-    <div>
-        첫번쨰 수: <input type="text" id="n1"> <br>
-        연산자 : <input type = "text" id = "op"> <br>
-        두번째 수: <input type="text" id="n2"> <br>
-
-        <button onclick="calc()">실행</button>
-
-    </div>
+  
     <div id="output">알 이즈 웰 </div>
     <script>
-        function calc() {
-            var str1 = document.getElementById('n1').value;
-            var str2 = document.getElementById('n2').value;
-            var op = document.getElementById('op').value;
-            var n1 = Number(str1);
-            var n2 = Number(str2);
-
+        function main() {
+            var n1 = Number(prompt("첫번째 숫자를 입력해 주세요"));
             var out = document.getElementById('output');
-            var str = "";
-            switch (op) {
-                case "+" :
-                str += "더하기 : " + (n1 + n2) + "<br>";
-                break;
-                case "-" :
-                str += "뻬기 : " + (n1 - n2) + "<br>";
-                break;
-                case "*" :
-                str += "곱하기 : " + (n1 * n2) + "<br>";
-                break;
-                case "/" :
-                str += "나누기 : " + (n1 / n2) + "<br>";
-                break;
-                default:
-                str += "연산자에는 4칙연산자만 입력해 주세요."
-            }         
-            
-            out.innerHTML = str;
+
+            var op, n2;
+            var result = n1;
+            var n = 2;
+
+            while(true) {
+                op = prompt("연산자를 입력해 주세요");
+                if (op === 'q') {
+                    break;
+                };               
+                n2 = Number(prompt(n + "번째 숫자를 입력해 주세요"));
+                if (op === '+') {
+                    result += n2;
+                } else if (op === '-') {
+                    result -= n2;
+                } else if (op === '*') {
+                    result *= n2;
+                } else if (op === '/') {
+                    result /= n2;
+                } else {
+                    result = "중간오류";
+                    break;
+                }
+                n++;
+            }
+            out.innerHTML = "최종 결과 값은 " + result + "입니다";           
         }
+        main();
     </script>
 
 </body>
