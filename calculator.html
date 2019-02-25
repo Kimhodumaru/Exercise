@@ -5,83 +5,92 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Calculator</title>
 </head>
 
 <body>
-    <h1>문자열 계산기</h1>
+    <h1>문자열 계산기 구현하기</h1>
 
-    <div>
-        첫번째 수 : <input id="inputNum1" type="text"> <br>
-        두번째 수 : <input id="inputNum2" type="text"> <br>
-        연산자 : <input id="inputOperator" type="text">
-        <button onclick="setNumber()"> 실행 </button>
-    </div>
-
-    <div id="output text1"> calculator1의 결과가 출력됩니다 </div>
-    <div id="output text2"> calculator2의 결과가 출력됩니다 </div>
+    <div id="output">알 이즈 웰</div>
     <script>
-        var setNumber = function () {
-            var input1 = document.getElementById("inputNum1").value;
-            var input2 = document.getElementById("inputNum2").value;
-            var operator = document.getElementById("inputOperator").value;
-            var num1 = Number(input1);
-            var num2 = Number(input2);
-            calculator1(num1, num2, operator);
-            calculator2(num1, num2, operator);
+
+        var result = 0;
+       
+
+
+
+        function getFirstValue() {
+            var n = Number(prompt("첫번째 숫자를 입력해 주세요"));
+            result += n;
+            return n;
         };
 
-        var calculator1 = function (num1, num2, operator) {
-
-            var out = document.getElementById("output text1");
-            var str = "";
-            if (operator === "+") {
-                str += num1 + " + " + num2 + " = " + (num1 + num2);
-            } else if (operator === "-") {
-                str += num1 + " - " + num2 + " = " + (num1 - num2);
-            } else if (operator === "*") {
-                str += num1 + " * " + num2 + " = " + (num1 * num2);
-            } else if (operator === "/") {
-                str += num1 + " / " + num2 + " = " + (num1 / num2);
-            }
-
-            out.innerHTML = str;
-
+        function getSecondValue() {
+            var n2 = Number(prompt("다음 숫자를 입력해 주세요"));
+            return n2;
         };
 
-        var calculator2 = function (num1, num2, operator) {
 
-            var out = document.getElementById("output text2");
-            var str = "";
 
-            switch (operator) {
-                case "+" :
-                str += num1 + " + " + num2 + " = " + (num1 + num2);
-                break;
-                case "-" :
-                str += num1 + " - " + num2 + " = " + (num1 - num2);
-                break;
-                case "*" :
-                str += num1 + " * " + num2 + " = " + (num1 * num2);
-                break;
-                case "/" :
-                str += num1 + " / " + num2 + " = " + (num1 / num2);
-                break;
-
-                default :
-            }
+        function getOperator() {
+            var op = prompt("연산자를 입력해 주세요");
             
+            if (op === 'q') {
+                return "q";
+            };
 
-            out.innerHTML = str;
-
+            if (op === '+') {
+                return "+";
+            } else if (op === '-') {
+                return "-";
+            } else if (op === '*') {
+                return "*";
+            } else if (op === '/') {
+                return "/";
+            } else {
+                return "연산자 오류";
+            };
         };
 
 
 
+        function calculate(n2, op) {
+            
+            if (op === '+') {
+                result += n2;
+            } else if (op === '-') {
+                result -= n2;
+            } else if (op === '*') {
+                result *= n2;
+            } else if (op === '/') {
+                result /= n2;
+            };
+
+            return result;           
+            };
+
+        function print(result) {
+            var out = document.getElementById('output');
+            out.innerHTML = "최종 결과 값은 " + result + "입니다";
+        }
+
+        function main() {
+            var num1 = getFirstValue();
+            
+            while(true) {
+            var operator = getOperator();
+            if (operator === "q") {
+                break;
+            };
+            var num2 = getSecondValue();
+            var calculateResult = calculate(num2, operator);
+            }
+            print(calculateResult);
+            };
 
 
 
-
+        main();
     </script>
 
 </body>
