@@ -14,25 +14,23 @@
     <div id="output">알 이즈 웰</div>
     <script>
 
-        var result = 0;
-       
-
-
-
-        function getFirstValue() {
+        
+        input ={};
+        input.result = 0; 
+        input.getFirstValue = function () { 
             var n = Number(prompt("첫번째 숫자를 입력해 주세요"));
-            result += n;
+            this.result += n;
             return n;
         };
 
-        function getSecondValue() {
+        input.getSecondValue = function() {
             var n2 = Number(prompt("다음 숫자를 입력해 주세요"));
             return n2;
         };
 
 
 
-        function getOperator() {
+        input.getOperator = function() {
             var op = prompt("연산자를 입력해 주세요");
             
             if (op === 'q') {
@@ -52,40 +50,43 @@
             };
         };
 
-
-
-        function calculate(n2, op) {
-            
+    
+        calculator = {};    
+        calculator.calculate = function(n2, op) {
+                        
             if (op === '+') {
-                result += n2;
+                input.result += n2;
             } else if (op === '-') {
-                result -= n2;
+                input.result -= n2;
             } else if (op === '*') {
-                result *= n2;
+                input.result *= n2;
             } else if (op === '/') {
-                result /= n2;
+                input.result /= n2;
             };
 
-            return result;           
+            return input.result;           
             };
 
-        function print(result) {
+        output = {};
+        output.print = function (result) {
             var out = document.getElementById('output');
             out.innerHTML = "최종 결과 값은 " + result + "입니다";
         }
 
+
         function main() {
-            var num1 = getFirstValue();
+            var num1 = input.getFirstValue();
             
             while(true) {
-            var operator = getOperator();
+            var operator = input.getOperator();
             if (operator === "q") {
                 break;
             };
-            var num2 = getSecondValue();
-            var calculateResult = calculate(num2, operator);
+            var num2 = input.getSecondValue();
+            var calculateResult = calculator.calculate(num2, operator);
             }
-            print(calculateResult);
+
+            output.print(calculateResult);
             };
 
 
