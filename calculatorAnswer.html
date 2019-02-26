@@ -10,33 +10,41 @@
 
 <body>
     <h1>문자열 계산기 구현하기</h1>
-  
-    <div id="output">알 이즈 웰 </div>
-    <script>
+    <div>
+            <input type="text" id="input"><br>
+            <button onclick = "calc()">확인</button>
+        </div>
 
-        var input = {count:2};
-        input.getFirstValue = function() {
-            var n = Number(prompt("첫번째 값을 입력해 주세요."));
+    <div id="output">결과가 여기에 나옵니다.</div>
+    <script>
+        
+        
+        var input ={};
+
+        input.init = function(str) {
+            this.list = str.split(" ");
+           
+        }
+        
+        input.empty = function () {
+            return this.list.length == 0; // length가 0일 때만 return된다.
+        }
+
+
+        input.getValue = function() {
+            var str = this.list.shift();
+            var n = Number(str);
             return n;
         };
         
-
-        input.getSecondValue = function () {
-            var num2 = Number(prompt(this.count + "번째 값을 입력해 주세요"));
-            this.count++;
-            return num2;
-        };
-
         input.getOperator = function () {
-            while(true) {
-                var op = prompt("연산자를 입력해 주세요.");
-                if (op === "+" || op === "-" || op === "*" || op === "/" || op === "q") {
-                    break;
-                } else {
-                    alert("올바른 연산자를 입력해주세요.");
-                }
-            }// while
-            return op;
+            var op = this.list.shift();
+            if (op === "+" || op === "-" || op === "*" || op === "/" ) {
+                return op;
+            } else {
+                return "$";
+            }
+           
         };
 
         calculator = {};
@@ -55,6 +63,8 @@
                 case "/" :
                     ret = first / second;
                 break;
+                default:
+                return NaN;
             }
             return ret;
         } 
@@ -62,24 +72,26 @@
 
         output = {};
         output.out = document.getElementById("output");
+
         output.print = function(value) {
             this.out.innerHTML = "최종 결과값은"+ value + "입니다.";
         };
 
-        function main() {
-            var result = input.getFirstValue();
-            while(true) {
+
+        function calc(){
+            var str = document.getElementById('input').value;   // 입력 된 문자열을 변수로 전달
+            input.init(str); // 문자열 해체하여 리스트 저장
+            var result = input.getValue();  // 첫번째 숫자를 변수로 전달
+            while(!input.empty()) {
                 var op = input.getOperator();
-                if (op === 'q') {
-                    break;
-                }
-                var num = input.getSecondValue();
-                result = calculator.calculate(result, num, op)
-            }            
-            
+                var second = input.getValue();
+                result = calculator.calculate(result, second, op);
+            }
+
             output.print(result);
         }
-        main ();
+
+
 
     </script>
 
