@@ -10,7 +10,7 @@ for (var i = 0; i < str.length; i++) {  // 글자 수 만큼 버튼 추가
     btn.innerHTML = str[i]; // str의 인덱스를 돌면서 생성된 button element에 값을 저장한다
     word2.appendChild(btn); // <div 'word2'>영역에 자식element로 생성된 button element인 btb을 추가한다
     game.btns.push(btn);  //btn의 문자열이 순차적으로 btns[]로 전달 된다 
-}
+};
 
 var swap = function (event) {    // 이벤트 동작 확인
    for (var i = 0; i < game.word.length; i++) {
@@ -22,7 +22,7 @@ game.copyBtnText = function() {
     for (var i = 0; i < this.word.length; i++) {
         this.btns[i].innerHTML = this.word[i];
     }
-}
+};
 
 
 var rshift = function (event) {
